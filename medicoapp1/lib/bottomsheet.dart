@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -16,12 +15,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
    
   List data=[];
-  File? AnimalImage;
+  File? animalImage;
   File? medicneImage;
 
   TextEditingController titlecontrol =TextEditingController();
   TextEditingController descreptioncontrol =TextEditingController();
   TextEditingController datecontrol =TextEditingController();
+  TextEditingController datecontro2 =TextEditingController();
+  
 
   pickAnimalImage(ImageSource imageType) async {
     try {
@@ -29,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (photo == null) return;
       final tempImage = File(photo.path);
       setState(() {
-          AnimalImage = tempImage;
+          animalImage = tempImage;
       });
 
       Get.back();
@@ -115,9 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
                          CircleAvatar(
                             radius: 50,
                             backgroundColor: Colors.grey,
-                             child:   AnimalImage != null
+                             child:   animalImage != null
                             ? Image.file(
-                                 AnimalImage!,
+                                 animalImage!,
                                 width: 50,
                                 height: 50,
                                 fit: BoxFit.cover,
@@ -197,9 +198,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 100,
                             width: 200,
                             color: Colors.grey,
-                             child:   AnimalImage != null
+                             child:   animalImage != null
                             ? Image.file(
-                                 AnimalImage!,
+                                 animalImage!,
                                 width: 200,
                                 height: 100,
                                 fit: BoxFit.cover,
@@ -269,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                   const SizedBox(height: 4,),
                 TextField(
-                  controller: datecontrol,
+                  controller: datecontro2,
                   readOnly: true,
                   decoration: InputDecoration(
                      suffixIcon:const Icon(Icons.calendar_month_outlined),
@@ -298,7 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
                String formatedDate =
                  DateFormat.yMMMd().format(pickeddate!);
                     setState(() {
-                    datecontrol.text = formatedDate;
+                    datecontro2.text = formatedDate;
                        });
                    },
                 ),
